@@ -1,14 +1,16 @@
 function parse_git_branch () {
        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
- 
+
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 GRAY="\[\033[38;5;179m\]"
 DIRCOLOR="\[\033[38;5;24m\]"
 NO_COLOR="\[\033[0m\]"
-export PS1="[$GRAY\t-$GREEN\u$RED@$DIRCOLOR\h$NO_COLOR]: $YELLOW\w$RED\$(parse_git_branch)$NO_COLOUR \$ "
+ROOT_COLOR="\[\033[38;5;90m\]"
+
+export PS1="[$GRAY\t-$GREEN\u$RED@$DIRCOLOR\h$NO_COLOR]: $YELLOW\w$RED\$(parse_git_branch)$ROOT_COLOR \$ $NO_COLOR"
 
 
 if brew list | grep coreutils > /dev/null ; then
